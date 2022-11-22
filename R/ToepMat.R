@@ -5,7 +5,7 @@
 #' @param l length scale (non-negative)
 #' @param nu smoothness parameter (non-negative)
 #'
-#' @return
+#' @return calculated kernel function value
 #' @export
 #'
 #' @examples

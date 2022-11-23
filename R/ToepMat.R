@@ -19,3 +19,25 @@ MatK = function(x, y ,l, nu){
              (2^(nu - 1) * gamma(nu)) * besselK(x = abs(x - y) * sqrt(2 * nu)/l, nu = nu),
           1.0)
 }
+
+rmvToep = function(n, mu = NULL, Sigma, eigtol = 1e-8, symtol = 1e-8){
+   N = dim(Sigma)[1]
+   if (dim(Sigma)[2] != N){
+      stop("Sigma should be square matrix!")
+   }
+   if (max(abs(Sigma - t(Sigma))) > symtol){
+      stop("Sigma should be symmetric matrix!")
+   }
+   if (is.null(mu)){
+      mu = rep(0, N)
+   }
+   if (dim(Sigma))
+   lambda = eigen(Sigma)$values
+   if (min(lambda) < eigtol){
+      stop("Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
+   } else{
+   }
+
+
+
+}

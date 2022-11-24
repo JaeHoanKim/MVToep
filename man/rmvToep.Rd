@@ -2,7 +2,7 @@
 % Please edit documentation in R/ToepMat.R
 \name{rmvToep}
 \alias{rmvToep}
-\title{Title}
+\title{Multivariate normal samples from Toeplitz-structured Covariance matrix}
 \usage{
 rmvToep(n, Sigma, mu = NULL, eigtol = 1e-08, symtol = 1e-08)
 }
@@ -21,7 +21,7 @@ rmvToep(n, Sigma, mu = NULL, eigtol = 1e-08, symtol = 1e-08)
 n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically
 }
 \description{
-Title
+Multivariate normal samples from Toeplitz-structured Covariance matrix
 }
 \examples{
 rmvToep(5, Sigma = diag(10), mu = rep(1, 10))

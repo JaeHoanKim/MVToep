@@ -31,13 +31,25 @@ rmvToep = function(n, mu = NULL, Sigma, eigtol = 1e-8, symtol = 1e-8){
    if (is.null(mu)){
       mu = rep(0, N)
    }
-   if (dim(Sigma))
    lambda = eigen(Sigma)$values
    if (min(lambda) < eigtol){
       stop("Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    } else{
+      out = matrix(0, n, N)
+      for (i in 1:n){
+         vec = out[i, ]
+         vec[1] = sqrt(lambda[1]) * rnorm(1) / sqrt(N)
+         vec[(N / 2) + 1] = sqrt(lambda[(N / 2) + 1]) * rnorm(1) / sqrt(N)
+         i=sqrt(as.complex(-1))
+         for(j in 2:(N/2)){
+            uj = rnorm(1); vj = rnorm(1)
+            vec[j] = (sqrt(lambda[j]) * (uj + i * vj)) / (sqrt(2 * N))
+            vec[N + 2 - j] = (sqrt(lambda[j]) * (uj - i * vj)) / (sqrt(2 * N))
+         }
+         vec = fft(vec)
+         out[i, ] = vec
+      }
+      out = out + matrix(mu, n, N, byrow = T)
    }
-
-
-
+   return(out)
 }

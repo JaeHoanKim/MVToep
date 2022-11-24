@@ -20,7 +20,7 @@ MatK = function(x, y ,l, nu){
           1.0)
 }
 
-rmvToep = function(n, mu = NULL, Sigma, eigtol = 1e-8, symtol = 1e-8){
+rmvToep = function(n, Sigma, mu = NULL, eigtol = 1e-8, symtol = 1e-8){
    N = dim(Sigma)[1]
    if (dim(Sigma)[2] != N){
       stop("Sigma should be square matrix!")

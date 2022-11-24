@@ -25,5 +25,5 @@ Title
 }
 \examples{
 rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
-rmvToep(10, Sigma = diag(abs(norm(6))), mu = rep(1, 6))
+rmvToep(10, Sigma = diag(abs(rnorm(6))), mu = rep(1, 6))
 }

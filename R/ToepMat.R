@@ -20,6 +20,18 @@ MatK = function(x, y ,l, nu){
           1.0)
 }
 
+#' Title
+#'
+#' @param n number of samples extracted from the distribution
+#' @param Sigma covarinace matrix of the distribution (Should have toeplitz structure)
+#' @param mu the mean vector of the distribtuion
+#' @param eigtol numerical threshold for Positive definiteness in Sigma
+#' @param symtol numerical threshold for checking symmetry in Sigma
+#'
+#' @return n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically
+#' @export
+#'
+#' @examples
 rmvToep = function(n, Sigma, mu = NULL, eigtol = 1e-8, symtol = 1e-8){
    N = dim(Sigma)[1]
    if (dim(Sigma)[2] != N){

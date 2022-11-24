@@ -36,8 +36,8 @@ rmvToep = function(n, mu = NULL, Sigma, eigtol = 1e-8, symtol = 1e-8){
       stop("Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    } else{
       out = matrix(0, n, N)
-      for (i in 1:n){
-         vec = out[i, ]
+      for (k in 1:n){
+         vec = rep(0, N)
          vec[1] = sqrt(lambda[1]) * rnorm(1) / sqrt(N)
          vec[(N / 2) + 1] = sqrt(lambda[(N / 2) + 1]) * rnorm(1) / sqrt(N)
          i=sqrt(as.complex(-1))
@@ -46,8 +46,7 @@ rmvToep = function(n, mu = NULL, Sigma, eigtol = 1e-8, symtol = 1e-8){
             vec[j] = (sqrt(lambda[j]) * (uj + i * vj)) / (sqrt(2 * N))
             vec[N + 2 - j] = (sqrt(lambda[j]) * (uj - i * vj)) / (sqrt(2 * N))
          }
-         vec = fft(vec)
-         out[i, ] = vec
+         out[k, ] = Re(fft(vec))
       }
       out = out + matrix(mu, n, N, byrow = T)
    }

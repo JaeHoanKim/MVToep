@@ -23,7 +23,7 @@ MatK = function(x, y ,l, nu){
 #' Title
 #'
 #' @param n number of samples extracted from the distribution
-#' @param Sigma covarinace matrix of the distribution (Should have toeplitz structure)
+#' @param Sigma covarinace matrix of the distribution. It should be a Toeplitz matrix and the number of rows should be even integer
 #' @param mu the mean vector of the distribtuion
 #' @param eigtol numerical threshold for Positive definiteness in Sigma
 #' @param symtol numerical threshold for checking symmetry in Sigma
@@ -32,6 +32,8 @@ MatK = function(x, y ,l, nu){
 #' @export
 #'
 #' @examples
+#' rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
+#' rmvToep(10, Sigma = diag(abs(norm(6))), mu = rep(1, 6))
 rmvToep = function(n, Sigma, mu = NULL, eigtol = 1e-8, symtol = 1e-8){
    N = dim(Sigma)[1]
    if (dim(Sigma)[2] != N){

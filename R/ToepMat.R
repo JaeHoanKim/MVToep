@@ -20,7 +20,7 @@ MatK = function(x, y ,l, nu){
           1.0)
 }
 
-#' Title
+#' Multivariate normal samples from Toeplitz-structured Covariance matrix
 #'
 #' @param n number of samples extracted from the distribution
 #' @param Sigma covarinace matrix of the distribution. It should be a Toeplitz matrix and the number of rows should be even integer

@@ -67,6 +67,11 @@ rmvToep = function(n, Sigma, mu = NULL, symtol = 1e-8){
 }
 
 rmvMat = function(n, gridpoints, l, nu){
+   grid_regular_check(gridpoints)
+   Sigma_vec = matK(gridpoints, gridpoints[1], l, nu)
+}
+
+grid_regular_check = function(gridpoints){
    N = length(gridpoints)
    gridpoints = sort(gridpoints)
    point_ini = gridpoints[1]
@@ -74,5 +79,4 @@ rmvMat = function(n, gridpoints, l, nu){
    if (max(abs(gridpoints - point_ini - gap * c(0:(N-1)))) > 1e-8){
       stop("gridpoints should be regular!")
    }
-   return(0)
 }

@@ -119,7 +119,7 @@ nnd.C.Mat = function(gridpoints, m, l, nu, kernel = "Mat"){
    }
 }
 
-rmvMat = function(n, gridpoints, mu = rep(0, length(gridpoints)), l, nu){
+rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints))){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
    embed_result = nnd.C.Mat(gridpoints, m = min_m(gridpoints), l, nu)

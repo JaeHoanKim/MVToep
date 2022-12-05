@@ -119,7 +119,7 @@ nnd.C.Mat = function(gridpoints, m, l, nu, kernel = "Mat"){
    }
 }
 
-rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints))){
+rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
    embed_result = nnd.C.Mat(gridpoints, m = min_m(gridpoints), l, nu)
@@ -139,7 +139,7 @@ rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints))){
       }
       out[k, ] = Re(fft(vec))
    }
-   out = out[, 1:N]
+   out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
    return(out)
 }

@@ -103,10 +103,11 @@ C.eigval.Mat = function(gridpoints, m, l, nu){
    vec = embed_vec(gridpoints, m)
    cj = MatK(vec, 0, l, nu)
    eigval = Re(fft(cj))
-   return(eigval)
+   return(list("cj" = cj, "eigval" = eigval))
 }
 rmvMat = function(n, gridpoints, l, nu){
    grid_regular_check(gridpoints)
-   Sigma_vec = matK(gridpoints, gridpoints[1], l, nu)
 
+   Sigma_vec = matK(gridpoints, gridpoints[1], l, nu)
+   return(0)
 }

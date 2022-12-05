@@ -66,7 +66,6 @@ rmvToep = function(n, Sigma, mu = NULL, symtol = 1e-8){
    return(out)
 }
 
-
 grid_regular_check = function(gridpoints){
    N = length(gridpoints)
    gridpoints = sort(gridpoints)
@@ -100,8 +99,12 @@ embed_vec = function(gridpoints, m){
    return(cj)
 }
 
-
-
+C.eigval.Mat = function(gridpoints, m, l, nu){
+   vec = embed_vec(gridpoints, m)
+   cj = MatK(vec, 0, l, nu)
+   eigval = Re(fft(cj))
+   return(eigval)
+}
 rmvMat = function(n, gridpoints, l, nu){
    grid_regular_check(gridpoints)
    Sigma_vec = matK(gridpoints, gridpoints[1], l, nu)

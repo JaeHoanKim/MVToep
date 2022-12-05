@@ -17,6 +17,10 @@ MatK = function(x, y ,l, nu){
           1.0)
 }
 
+RBFK = function(x, y, l){
+   return(exp(-(x - y)^2 / (2 * l^2)))
+}
+
 #' Multivariate normal samples from Toeplitz-structured Covariance matrix
 #'
 #' @param n number of samples extracted from the distribution

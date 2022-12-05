@@ -1,4 +1,4 @@
-#' Matern covariance function
+#' Matern kernel function
 #'
 #' @param x vector input
 #' @param y vector input (same length with x)
@@ -17,6 +17,16 @@ MatK = function(x, y ,l, nu){
           1.0)
 }
 
+#' RBF kernel function
+#'
+#' @param x
+#' @param y
+#' @param l
+#'
+#' @return
+#' @export
+#'
+#' @examples
 RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }

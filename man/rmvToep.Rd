@@ -14,8 +14,6 @@ rmvToep(n, Sigma, mu = NULL, symtol = 1e-08)
 \item{mu}{the mean vector of the distribtuion}
 
 \item{symtol}{numerical threshold for checking symmetry in Sigma}
-
-\item{eigtol}{numerical threshold for Positive definiteness in Sigma}
 }
 \value{
 n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically

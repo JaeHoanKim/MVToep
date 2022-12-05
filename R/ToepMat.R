@@ -26,7 +26,6 @@ RBFK = function(x, y, l){
 #' @param n number of samples extracted from the distribution
 #' @param Sigma covarinace matrix of the distribution. It should be a Toeplitz matrix
 #' @param mu the mean vector of the distribtuion
-#' @param eigtol numerical threshold for Positive definiteness in Sigma
 #' @param symtol numerical threshold for checking symmetry in Sigma
 #'
 #' @return n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically
@@ -126,7 +125,7 @@ nnd.C.Mat = function(gridpoints, m, l, nu){
    }
    else{
       m = 2 * m
-      if (m > 1000){
+      if (m > 2000){
          stop("It seems that adequate circular matrix is not found. Try smaller l.")
       }
       nnd.C.Mat(gridpoints, m, l, nu)
@@ -142,7 +141,7 @@ nnd.C.RBF = function(gridpoints, m, l){
    }
    else{
       m = 2 * m
-      if (m > 1000){
+      if (m > 2000){
          stop("It seems that adequate circular matrix is not found. Try smaller l.")
       }
       nnd.C.RBF(gridpoints, m, l)

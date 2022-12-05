@@ -126,7 +126,7 @@ nnd.C.Mat = function(gridpoints, m, l, nu){
    }
    else{
       m = 2 * m
-      if (m == 4096){
+      if (m > 1000){
          stop("It seems that adequate circular matrix is not found. Try smaller l.")
       }
       nnd.C.Mat(gridpoints, m, l, nu)
@@ -142,7 +142,7 @@ nnd.C.RBF = function(gridpoints, m, l){
    }
    else{
       m = 2 * m
-      if (m == 4096){
+      if (m > 1000){
          stop("It seems that adequate circular matrix is not found. Try smaller l.")
       }
       nnd.C.RBF(gridpoints, m, l)

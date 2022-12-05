@@ -4,18 +4,18 @@
 \alias{rmvToep}
 \title{Multivariate normal samples from Toeplitz-structured Covariance matrix}
 \usage{
-rmvToep(n, Sigma, mu = NULL, eigtol = 1e-08, symtol = 1e-08)
+rmvToep(n, Sigma, mu = NULL, symtol = 1e-08)
 }
 \arguments{
 \item{n}{number of samples extracted from the distribution}
 
-\item{Sigma}{covarinace matrix of the distribution. It should be a Toeplitz matrix and the number of rows should be even integer}
+\item{Sigma}{covarinace matrix of the distribution. It should be a Toeplitz matrix}
 
 \item{mu}{the mean vector of the distribtuion}
 
-\item{eigtol}{numerical threshold for Positive definiteness in Sigma}
-
 \item{symtol}{numerical threshold for checking symmetry in Sigma}
+
+\item{eigtol}{numerical threshold for Positive definiteness in Sigma}
 }
 \value{
 n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically

@@ -22,7 +22,7 @@ MatK = function(x, y ,l, nu){
 
 #' Multivariate normal samples from Toeplitz-structured Covariance matrix
 #'
-#' @param n number of samples extracted from the distribution
+#' @param n number of samples extracted from the distribution (should be even integer)
 #' @param Sigma covarinace matrix of the distribution. It should be a Toeplitz matrix and the number of rows should be even integer
 #' @param mu the mean vector of the distribtuion
 #' @param eigtol numerical threshold for Positive definiteness in Sigma

@@ -116,8 +116,21 @@ nnd.C = function(gridpoints, m, l, nu, kernel = "Mat"){
       }
       else{
          m = 2 * m
-         nnd.C(gridpoints, m, l, nu)
+         nnd.C(gridpoints, m, l, nu, kernel)
       }
+   } else if (kernel == "RBF"){
+      out = C.eigval.RBF(gridpoints, m, l, nu)
+      cj = out$cj
+      eigval = out$eigval
+      if (min(eigval) > 0){
+         return(list("cj" = cj, "m" = m, "eigval" = eigval))
+      }
+      else{
+         m = 2 * m
+         nnd.C(gridpoints, m, l, nu, kernel)
+      }
+   } else{
+      stop("kernel option should be RBF or Mat!")
    }
 }
 

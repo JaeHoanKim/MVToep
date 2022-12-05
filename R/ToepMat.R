@@ -12,9 +12,6 @@
 #' MatK(c(1, 2, 3), c(3, 4, 6), 1, 0.5)
 #' MatK(1, 1, 1, 1)
 MatK = function(x, y ,l, nu){
-   if (length(x) != length(y)){
-      stop("the length of x and y should be equal")
-   }
    ifelse(abs(x - y) > 0, (sqrt(2 * nu) * abs(x - y) / l)^nu /
              (2^(nu - 1) * gamma(nu)) * besselK(x = abs(x - y) * sqrt(2 * nu)/l, nu = nu),
           1.0)
@@ -67,4 +64,8 @@ rmvToep = function(n, Sigma, mu = NULL, symtol = 1e-8){
       out = out + matrix(mu, n, N, byrow = T)
    }
    return(out)
+}
+
+rmvMat = function(n, gridnum = NULL, l, nu){
+   vec =
 }

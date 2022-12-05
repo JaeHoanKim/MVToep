@@ -39,9 +39,6 @@ rmvToep = function(n, Sigma, mu = NULL, symtol = 1e-8){
    if (dim(Sigma)[2] != N){
       stop("Sigma should be square matrix!")
    }
-   if (max(abs(Sigma - t(Sigma))) > symtol){
-      stop("Sigma should be symmetric matrix!")
-   }
    if (is.null(mu)){
       mu = rep(0, N)
    }

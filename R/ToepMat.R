@@ -167,3 +167,28 @@ rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints)), tau = 1
    out = out + matrix(mu, n, N, byrow = T)
    return(out)
 }
+
+rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
+   N = length(gridpoints)
+   grid_regular_check(gridpoints)
+   embed_result = nnd.C.RBF(gridpoints, m = min_m(gridpoints), l)
+   cj = embed_result$cj
+   m = embed_result$m
+   lambda = embed_result$eigval
+   out = matrix(0, n, m)
+   for (k in 1:n){
+      vec = rep(0, m)
+      vec[1] = sqrt(lambda[1]) * rnorm(1) / sqrt(m)
+      vec[(m / 2) + 1] = sqrt(lambda[(m / 2) + 1]) * rnorm(1) / sqrt(m)
+      i=sqrt(as.complex(-1))
+      for(j in 2:(m/2)){
+         uj = rnorm(1); vj = rnorm(1)
+         vec[j] = (sqrt(lambda[j]) * (uj + i * vj)) / (sqrt(2 * m))
+         vec[m + 2 - j] = (sqrt(lambda[j]) * (uj - i * vj)) / (sqrt(2 * m))
+      }
+      out[k, ] = Re(fft(vec))
+   }
+   out = out[, 1:N] * tau
+   out = out + matrix(mu, n, N, byrow = T)
+   return(out)
+}

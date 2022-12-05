@@ -110,7 +110,14 @@ C.eigval.Mat = function(gridpoints, m, l, nu){
    return(list("cj" = cj, "eigval" = eigval))
 }
 
-nnd.C.Mat = function(gridpoints, m, l, nu, kernel = "Mat"){
+C.eigval.RBF = function(gridpoints, m, l){
+   vec = embed_vec(gridpoints, m)
+   cj = RBFK(vec, 0, l)
+   eigval = Re(fft(cj))
+   return(list("cj" = cj, "eigval" = eigval))
+}
+
+nnd.C.Mat = function(gridpoints, m, l, nu){
    out = C.eigval.Mat(gridpoints, m, l, nu)
    cj = out$cj
    eigval = out$eigval
@@ -119,7 +126,20 @@ nnd.C.Mat = function(gridpoints, m, l, nu, kernel = "Mat"){
    }
    else{
       m = 2 * m
-      nnd.C.Mat(gridpoints, m, l, nu, kernel)
+      nnd.C.Mat(gridpoints, m, l, nu)
+   }
+}
+
+nnd.C.RBF = function(gridpoints, m, l){
+   out = C.eigval.RBF(gridpoints, m, l)
+   cj = out$cj
+   eigval = out$eigval
+   if (min(eigval) > 0){
+      return(list("cj" = cj, "m" = m, "eigval" = eigval))
+   }
+   else{
+      m = 2 * m
+      nnd.C.RBF(gridpoints, m, l)
    }
 }
 

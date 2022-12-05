@@ -106,36 +106,15 @@ C.eigval.Mat = function(gridpoints, m, l, nu){
    return(list("cj" = cj, "eigval" = eigval))
 }
 
-nnd.C = function(gridpoints, m, l, nu, kernel = "Mat"){
-   if (kernel == "Mat"){
-      out = C.eigval.Mat(gridpoints, m, l, nu)
-      cj = out$cj
-      eigval = out$eigval
-      if (min(eigval) > 0){
-         return(list("cj" = cj, "m" = m, "eigval" = eigval))
-      }
-      else{
-         m = 2 * m
-         nnd.C(gridpoints, m, l, nu, kernel)
-      }
-   } else if (kernel == "RBF"){
-      out = C.eigval.RBF(gridpoints, m, l, nu)
-      cj = out$cj
-      eigval = out$eigval
-      if (min(eigval) > 0){
-         return(list("cj" = cj, "m" = m, "eigval" = eigval))
-      }
-      else{
-         m = 2 * m
-         nnd.C(gridpoints, m, l, nu, kernel)
-      }
-   } else{
-      stop("kernel option should be RBF or Mat!")
+nnd.C.Mat = function(gridpoints, m, l, nu, kernel = "Mat"){
+   out = C.eigval.Mat(gridpoints, m, l, nu)
+   cj = out$cj
+   eigval = out$eigval
+   if (min(eigval) > 0){
+      return(list("cj" = cj, "m" = m, "eigval" = eigval))
    }
-}
-
-rmvMat = function(n, gridpoints, l, nu){
-   grid_regular_check(gridpoints)
-   Sigma_vec = matK(gridpoints, gridpoints[1], l, nu)
-   return(0)
+   else{
+      m = 2 * m
+      nnd.C.Mat(gridpoints, m, l, nu, kernel)
+   }
 }

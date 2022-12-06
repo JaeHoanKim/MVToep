@@ -1,5 +1,6 @@
 <!-- badges: start -->
   [![R-CMD-check](https://github.com/JaeHoanKim/MVToep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JaeHoanKim/MVToep/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/JaeHoanKim/MVToep/branch/master/graph/badge.svg)](https://app.codecov.io/gh/JaeHoanKim/MVToep?branch=master)
 <!-- badges: end -->
 
 ## Multivariate normal distribution from Toeplitz-structured covariance matrix (MVToep)

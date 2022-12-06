@@ -17,7 +17,7 @@ MatK = function(x, y ,l, nu){
           1.0)
 }
 
-#' RBF kernel function
+#' Title
 #'
 #' @param x
 #' @param y
@@ -26,6 +26,7 @@ MatK = function(x, y ,l, nu){
 #' @return
 #' @export
 #'
+#' @inheritParams MatK
 #' @examples
 RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
@@ -158,6 +159,19 @@ nnd.C.RBF = function(gridpoints, m, l){
    }
 }
 
+#' Title
+#'
+#' @param n
+#' @param gridpoints
+#' @param l
+#' @param nu
+#' @param mu
+#' @param tau
+#'
+#' @return
+#' @export
+#'
+#' @examples
 rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
@@ -183,6 +197,18 @@ rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints)), tau = 1
    return(out)
 }
 
+#' Multivariate normal sampling from Matern covarinace kernel with regular grids
+#'
+#' @param n a
+#' @param gridpoints b
+#' @param l c
+#' @param mu d
+#' @param tau e
+#'
+#' @return f
+#' @export
+#'
+#' @examples
 rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)

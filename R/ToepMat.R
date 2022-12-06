@@ -2,7 +2,7 @@
 #'
 #' @param x vector input
 #' @param y vector input (same length with x)
-#' @param l length scale (non-negative)
+#' @param rho length scale (non-negative)
 #' @param nu smoothness parameter (non-negative)
 #'
 #' @return calculated kernel function value
@@ -11,9 +11,9 @@
 #' @examples
 #' MatK(c(1, 2, 3), c(3, 4, 6), 1, 0.5)
 #' MatK(1, 1, 1, 1)
-MatK = function(x, y ,l, nu){
-   ifelse(abs(x - y) > 0, (sqrt(2 * nu) * abs(x - y) / l)^nu /
-             (2^(nu - 1) * gamma(nu)) * besselK(x = abs(x - y) * sqrt(2 * nu)/l, nu = nu),
+MatK = function(x, y ,rho, nu){
+   ifelse(abs(x - y) > 0, (sqrt(2 * nu) * abs(x - y) / rho)^nu /
+             (2^(nu - 1) * gamma(nu)) * besselK(x = abs(x - y) * sqrt(2 * nu)/rho, nu = nu),
           1.0)
 }
 
@@ -113,9 +113,9 @@ embed_vec = function(gridpoints, m){
    return(cj)
 }
 
-C.eigval.Mat = function(gridpoints, m, l, nu){
+C.eigval.Mat = function(gridpoints, m, rho, nu){
    vec = embed_vec(gridpoints, m)
-   cj = MatK(vec, 0, l, nu)
+   cj = MatK(vec, 0, rho, nu)
    eigval = Re(fft(cj))
    return(list("cj" = cj, "eigval" = eigval))
 }
@@ -127,8 +127,8 @@ C.eigval.RBF = function(gridpoints, m, l){
    return(list("cj" = cj, "eigval" = eigval))
 }
 
-nnd.C.Mat = function(gridpoints, m, l, nu){
-   out = C.eigval.Mat(gridpoints, m, l, nu)
+nnd.C.Mat = function(gridpoints, m, rho, nu){
+   out = C.eigval.Mat(gridpoints, m, rho, nu)
    cj = out$cj
    eigval = out$eigval
    if (min(eigval) > 0){
@@ -139,7 +139,7 @@ nnd.C.Mat = function(gridpoints, m, l, nu){
       if (m > 2000){
          stop("It seems that adequate circular matrix is not found. Try smaller l.")
       }
-      nnd.C.Mat(gridpoints, m, l, nu)
+      nnd.C.Mat(gridpoints, m, rho, nu)
    }
 }
 

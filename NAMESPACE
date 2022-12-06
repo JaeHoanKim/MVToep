@@ -3,5 +3,6 @@
 export(MatK)
 export(RBFK)
 export(rmvMat)
-export(rmvRBF)
 export(rmvToep)
+importFrom(stats,fft)
+importFrom(stats,rnorm)

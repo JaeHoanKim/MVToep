@@ -206,7 +206,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 #' @export
 #'
 #' @examples
-#' rmvRBF(100, c(0:7)/7, 1, tau = 1)
+#' rmvRBF(100, c(0:20)/20, l = 0.1, tau = 1)
 rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)

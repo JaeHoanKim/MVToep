@@ -1,5 +1,9 @@
-## Multivariate normal distribution from Toeplitz-structured covariance matrix (MVToep)
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/JaeHoanKim/MVToep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JaeHoanKim/MVToep/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/JaeHoanKim/MVToep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JaeHoanKim/MVToep/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
+## Multivariate normal distribution from Toeplitz-structured covariance matrix (MVToep)
 ------------------------------------------------------------------------
 
 ### Intended use

@@ -159,23 +159,24 @@ nnd.C.RBF = function(gridpoints, m, l){
    }
 }
 
-#' Title
+#' Multivariate normal sampling from RBF covarinace kernel with regular grids
 #'
 #' @param n
 #' @param gridpoints
-#' @param l
+#' @param rho
 #' @param nu
 #' @param mu
 #' @param tau
 #'
 #' @return
 #' @export
+#' @inheritParams rmvRBF
 #'
 #' @examples
-rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints)), tau = 1){
+rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
-   embed_result = nnd.C.Mat(gridpoints, m = min_m(gridpoints), l, nu)
+   embed_result = nnd.C.Mat(gridpoints, m = min_m(gridpoints), rho, nu)
    cj = embed_result$cj
    m = embed_result$m
    lambda = embed_result$eigval
@@ -197,7 +198,7 @@ rmvMat = function(n, gridpoints, l, nu, mu = rep(0, length(gridpoints)), tau = 1
    return(out)
 }
 
-#' Multivariate normal sampling from Matern covarinace kernel with regular grids
+#' Multivariate normal sampling from RBF covarinace kernel with regular grids
 #'
 #' @param n a
 #' @param gridpoints b

@@ -2,16 +2,16 @@
 % Please edit documentation in R/ToepMat.R
 \name{MatK}
 \alias{MatK}
-\title{Matern covariance function}
+\title{Matern kernel function}
 \usage{
-MatK(x, y, l, nu)
+MatK(x, y, rho, nu)
 }
 \arguments{
 \item{x}{vector input}
 
 \item{y}{vector input (same length with x)}
 
-\item{l}{length scale (non-negative)}
+\item{rho}{length scale (non-negative)}
 
 \item{nu}{smoothness parameter (non-negative)}
 }
@@ -19,7 +19,7 @@ MatK(x, y, l, nu)
 calculated kernel function value
 }
 \description{
-Matern covariance function
+Matern kernel function
 }
 \examples{
 MatK(c(1, 2, 3), c(3, 4, 6), 1, 0.5)

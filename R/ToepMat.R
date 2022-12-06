@@ -17,17 +17,15 @@ MatK = function(x, y ,rho, nu){
           1.0)
 }
 
-#' Title
+#' RBF kernel function
 #'
-#' @param x
-#' @param y
-#' @param l
+#' @param l length parameter in RBF kernel
+#' @inheritParams MatK
 #'
-#' @return
+#' @return asdf
 #' @export
 #'
-#' @inheritParams MatK
-#' @examples
+#' @examples asdf
 RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
@@ -161,18 +159,14 @@ nnd.C.RBF = function(gridpoints, m, l){
 
 #' Multivariate normal sampling from RBF covarinace kernel with regular grids
 #'
-#' @param n
-#' @param gridpoints
-#' @param rho
-#' @param nu
-#' @param mu
-#' @param tau
-#'
-#' @return
-#' @export
+#' @param rho length parameter in Matern kernel
+#' @param nu smoothness parameter in Matern kernel
 #' @inheritParams rmvRBF
 #'
-#' @examples
+#' @return asdf
+#' @export
+#'
+#' @examples asdf
 rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
@@ -209,7 +203,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 #' @return f
 #' @export
 #'
-#' @examples
+#' @examples asdf
 rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)

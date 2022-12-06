@@ -25,7 +25,8 @@ MatK = function(x, y ,rho, nu){
 #' @return asdf
 #' @export
 #'
-#' @examples asdf
+#' @examples
+#' RBFK(c(0, 1, 2), 0, 5)
 RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
@@ -166,7 +167,8 @@ nnd.C.RBF = function(gridpoints, m, l){
 #' @return asdf
 #' @export
 #'
-#' @examples asdf
+#' @examples
+#' rmvMat(10, c(0:20)/20, 1, 0.5, tau = 1)
 rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
@@ -203,7 +205,8 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 #' @return f
 #' @export
 #'
-#' @examples asdf
+#' @examples
+#' rmvRBF(100, c(0:7)/7, 1, tau = 1)
 rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)

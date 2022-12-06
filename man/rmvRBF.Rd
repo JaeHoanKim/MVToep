@@ -24,5 +24,5 @@ f
 Multivariate normal sampling from RBF covarinace kernel with regular grids
 }
 \examples{
-asdf
+rmvRBF(100, c(0:7)/7, 1, tau = 1)
 }

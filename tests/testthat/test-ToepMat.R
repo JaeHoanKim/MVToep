@@ -43,6 +43,5 @@ test_that("Compatibility check", {
    expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
 })
 
-nnd.C.Mat(c(0:50)/50, m = 128, rho = 3, nu = 1)
 
 

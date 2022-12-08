@@ -4,7 +4,7 @@
 \alias{rmvToep}
 \title{Multivariate normal samples from Toeplitz-structured Covariance matrix}
 \usage{
-rmvToep(n, Sigma, mu = NULL, symtol = 1e-08)
+rmvToep(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-08)
 }
 \arguments{
 \item{n}{number of samples extracted from the distribution}

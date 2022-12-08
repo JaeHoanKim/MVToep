@@ -25,7 +25,7 @@ MatK = function(x, y ,rho, nu){
 #' @inheritParams MatK
 #'
 #' @return It returns the calculated RBF kernel function value, along the following formula : \cr
-#' \eqn{C(d) = exp(-\frac{d^2}{2l^2})}, \cr
+#' \eqn{C(d) = \exp(-\frac{d^2}{2l^2})}, \cr
 #' where \eqn{d = |x-y|}.
 #' @export
 #'

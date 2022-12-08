@@ -7,14 +7,16 @@
 RBFK(x, y, l)
 }
 \arguments{
-\item{x}{vector input}
+\item{x}{scalar of vector input}
 
-\item{y}{vector input (same length with x)}
+\item{y}{scalar vector input (same length with x)}
 
-\item{l}{length parameter in RBF kernel}
+\item{l}{length parameter in the RBF kernel}
 }
 \value{
-asdf
+It returns the calculated RBF kernel function value, along the following formula : \cr
+\eqn{C(d) = exp(-\frac{d^2}{2l^2})}, \cr
+where \eqn{d = |x-y|}.
 }
 \description{
 RBF kernel function

@@ -47,7 +47,7 @@ RBFK = function(x, y, l){
 rmvToep = function(n, Sigma, mu = NULL, symtol = 1e-8){
    N = dim(Sigma)[1]
    if (dim(Sigma)[2] != N){
-      stop("Sigma should be square matrix!")
+      stop("Sigma should be a square matrix!")
    }
    if (is.null(mu)){
       mu = rep(0, N)

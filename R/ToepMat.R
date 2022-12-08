@@ -35,6 +35,27 @@ RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
 
+Sigma.AR.order = function(rho, p, order = NULL){
+   if (order = NULL){
+      order = p
+   }
+   R = diag(p)
+   for(i in 1:p){
+      for(j in 1:p){
+         R[i, j] = ifelse(abs(i-j) > order, 0, rho^(abs(i-j)))
+      }
+   }
+   return(R)
+}
+
+nnd.C.Toep = function(Sigma){
+   N = nrow(Sigma)
+   Sigma_vec = Sigma[1, ]
+   out = min(Re(fft(c(Sigma_vec[1:N], Sigma_vec[N:1]))))
+   return(ifelse(out >= 0, "rmvToep is applicable for the given Sigma!",
+                 "min(lambda) < 0; rmvToep cannot be applied for the given Sigma!"))
+}
+
 #' Multivariate normal samples from Toeplitz-structured Covariance matrix
 #'
 #' @param n number of samples extracted from the distribution

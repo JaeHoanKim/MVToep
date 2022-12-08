@@ -10,9 +10,16 @@ test_that("RBFK", {
 
 ## check the size of the output
 
-test_that("rmvMat dimension", {
+Sigma1 = matrix(c(1, 0.1, 0, 0, 0,
+                  0.1, 1, 0.1, 0, 0,
+                  0, 0.1, 1, 0.1, 0,
+                  0, 0, 0.1, 1, 0.1,
+                  0, 0, 0, 0.1, 1), 5, 5)
+
+test_that("rmv dimension test", {
    expect_equal(dim(rmvMat(30, c(0:50)/50, rho = 1, nu = 1)), c(30, 51))
    expect_equal(dim(rmvMat(1, c(0:50)/50, rho = 1, nu = 1)), c(1, 51))
+   expect_equal(dim(rmvToep(50, Sigma1, mu = c(1, 2, 3, 4, 5))), c(50, 5))
 })
 
 ## error expected for ill conditioned matrix
@@ -31,12 +38,12 @@ test_that("error in nnd function", {
 
 ## compatibility check
 
-Sigma1 = matrix(c(2, 1, 0,
+Sigma2 = matrix(c(2, 1, 0,
                  1, 2, 1,
                  0, 1.001, 2,
                  1, 2, 3), 3, 4)
 
-Sigma2 = matrix(c(1, 0.99, 0.97, 0.94, 0.89,
+Sigma3 = matrix(c(1, 0.99, 0.97, 0.94, 0.89,
                   0.99, 1, 0.99, 0.97, 0.94,
                   0.97, 0.99, 1, 0.99, 0.97,
                   0.94, 0.97, 0.99, 1, 0.99,
@@ -46,7 +53,7 @@ grid1 = c(0:8)/8
 grid1[3] = grid1[3] + 0.001
 
 test_that("Compatibility check", {
-   expect_error(rmvToep(5, Sigma1), "Sigma should be a square matrix!")
-   expect_error(rmvToep(5, Sigma2), "Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
+   expect_error(rmvToep(5, Sigma2), "Sigma should be a square matrix!")
+   expect_error(rmvToep(5, Sigma3), "Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
 })

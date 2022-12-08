@@ -62,6 +62,16 @@ Sigma.AR.order = function(rho, p, order = p){
    return(R)
 }
 
+#' nonnegativity check for the given Toeplitz matrix
+#'
+#' @param Sigma A matrix to be checked
+#'
+#' @return It returns the inspection result of the matrix.
+#' @export
+#'
+#' @examples
+#' nnd.C.Toep(diag(3))
+#' nnd.C.Toep(Sigma.AR.order(0.3, 20))
 nnd.C.Toep = function(Sigma){
    N = nrow(Sigma)
    Sigma_vec = Sigma[1, ]

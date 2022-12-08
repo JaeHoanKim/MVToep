@@ -33,15 +33,20 @@ test_that("error in nnd function", {
 
 Sigma1 = matrix(c(2, 1, 0,
                  1, 2, 1,
-                 0, 1.001, 2))
+                 0, 1.001, 2,
+                 1, 2, 3), 3, 4)
+
+Sigma2 = matrix(c(1, 0.99, 0.97, 0.94, 0.89,
+                  0.99, 1, 0.99, 0.97, 0.94,
+                  0.97, 0.99, 1, 0.99, 0.97,
+                  0.94, 0.97, 0.99, 1, 0.99,
+                  0.89, 0.94, 0.97, 0.99, 1), 5, 5)
 
 grid1 = c(0:8)/8
 grid1[3] = grid1[3] + 0.001
 
 test_that("Compatibility check", {
    expect_error(rmvToep(5, Sigma1), "Sigma should be a square matrix!")
+   expect_error(rmvToep(5, Sigma2), "Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
 })
-
-
-

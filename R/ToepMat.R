@@ -48,13 +48,10 @@ RBFK = function(x, y, l){
 #' @examples
 #' rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
 #' rmvToep(10, Sigma = diag(abs(rnorm(6))), mu = rep(1, 6))
-rmvToep = function(n, Sigma, mu = NULL, symtol = 1e-8){
+rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-8){
    N = dim(Sigma)[1]
    if (dim(Sigma)[2] != N){
       stop("Sigma should be a square matrix!")
-   }
-   if (is.null(mu)){
-      mu = rep(0, N)
    }
    # lambda = eigen(Sigma)$values
    Sigma_vec = Sigma[1, ] # first row of Sigma, which contains all the values in Sigma

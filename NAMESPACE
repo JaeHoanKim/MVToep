@@ -2,6 +2,8 @@
 
 export(MatK)
 export(RBFK)
+export(Sigma.AR.order)
+export(nnd.C.Toep)
 export(rmvMat)
 export(rmvRBF)
 export(rmvToep)

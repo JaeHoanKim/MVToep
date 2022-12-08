@@ -101,8 +101,7 @@ rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-8){
    if (max(abs(Sigma - t(Sigma))) > symtol){
       stop("Sigma should be a symmetric matrix!")
    }
-   # lambda = eigen(Sigma)$values
-   Sigma_vec = Sigma[1, ] # first row of Sigma, which contains all the values in Sigma
+   Sigma_vec = Sigma[1, ]
    C_vec = c(Sigma_vec[1:N], Sigma_vec[N:1])
    lambda = Re(fft(C_vec))
    if (min(lambda) < 0){

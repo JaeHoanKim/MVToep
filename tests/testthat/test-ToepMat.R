@@ -20,3 +20,14 @@ test_that("rmvMat dimension", {
 test_that("error check for ill-conditioned matrix",{
    expect_error(rmvRBF(10, c(0:30)/30, l=3), "It seems that adequate circular matrix is not found. Try smaller l.")
 })
+
+## compatibility check
+
+Sigma1 = matrix(c(2, 1, 0,
+                 1, 2, 1,
+                 0, 1.001, 2))
+
+test_that("Compatibility check", {
+   expect_error(rmvToep(5, Sigma1), "Sigma should be a square matrix!")
+})
+

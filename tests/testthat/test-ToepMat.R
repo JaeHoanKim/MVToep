@@ -22,6 +22,13 @@ test_that("error check for ill-conditioned matrix",{
    expect_error(rmvMat(10, c(0:50)/50, rho = 3, nu = 1), "It seems that adequate circular matrix is not found. Try smaller l.")
 })
 
+## exact error location check
+
+test_that("error in nnd function", {
+   expect_error(nnd.C.RBF(c(0:30)/30, m = 64, l = 3), "It seems that adequate circular matrix is not found. Try smaller l.")
+   expect_error(nnd.C.Mat(c(0:50)/50, m = 128, rho = 3, nu = 1), "It seems that adequate circular matrix is not found. Try smaller l.")
+})
+
 ## compatibility check
 
 Sigma1 = matrix(c(2, 1, 0,

@@ -27,7 +27,14 @@ Sigma1 = matrix(c(2, 1, 0,
                  1, 2, 1,
                  0, 1.001, 2))
 
+grid1 = c(0:8)/8
+grid1[3] = grid1[3] + 0.001
+
 test_that("Compatibility check", {
    expect_error(rmvToep(5, Sigma1), "Sigma should be a square matrix!")
+   expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
 })
+
+
+
 

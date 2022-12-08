@@ -35,7 +35,24 @@ RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
 
+#' AR structured covariance matrix
+#'
+#' @param rho Autocorrelation coefficient; usually the value between 0 and 1
+#' @param p The number of rows for the desired matrix to be returned
+#' @param order The order of the AR model; default value is p
+#'
+#' @return It returns the p by p matrix with the element. For the return matrix C,
+#' \eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|<=order}, else 0
+#' @export
+#'
+#' @examples
+#' Sigma.AR.order(0.3, 20)
+#' Sigma.AR.order(0.5, 10, order = 0)
 Sigma.AR.order = function(rho, p, order = p){
+   order = floor(order)
+   if (order < 0){
+      stop("order should be given as a non-negative integer!")
+   }
    R = diag(p)
    for(i in 1:p){
       for(j in 1:p){

@@ -35,10 +35,7 @@ RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
 
-Sigma.AR.order = function(rho, p, order = NULL){
-   if (order = NULL){
-      order = p
-   }
+Sigma.AR.order = function(rho, p, order = p){
    R = diag(p)
    for(i in 1:p){
       for(j in 1:p){

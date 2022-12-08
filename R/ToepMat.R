@@ -1,11 +1,13 @@
 #' Matern kernel function
 #'
-#' @param x vector input
-#' @param y vector input (same length with x)
+#' @param x scalar of vector input
+#' @param y scalar vector input (same length with x)
 #' @param rho length scale (non-negative)
 #' @param nu smoothness parameter (non-negative)
 #'
-#' @return calculated kernel function value
+#' @return It returns the calculated Matern kernel function value, along the following formula : \cr
+#' \eqn{C(d) = \sigma^2\frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
+#' where \eqn{d = |x-y|}.
 #' @export
 #'
 #' @examples
@@ -19,10 +21,12 @@ MatK = function(x, y ,rho, nu){
 
 #' RBF kernel function
 #'
-#' @param l length parameter in RBF kernel
+#' @param l length parameter in the RBF kernel
 #' @inheritParams MatK
 #'
-#' @return asdf
+#' @return It returns the calculated RBF kernel function value, along the following formula : \cr
+#' \eqn{C(d) = exp(-\frac{d^2}{2l^2})}, \cr
+#' where \eqn{d = |x-y|}.
 #' @export
 #'
 #' @examples

@@ -16,7 +16,9 @@ MatK(x, y, rho, nu)
 \item{nu}{smoothness parameter (non-negative)}
 }
 \value{
-calculated kernel function value
+It returns the calculated kernel function value, along the following formula : \cr
+C(d) = \eqn{\sigma^2\frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
+where d = |x-y|.
 }
 \description{
 Matern kernel function

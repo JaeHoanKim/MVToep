@@ -1,0 +1,19 @@
+---
+title: "Fast Multivariate normal sampling under Toeplitz covariance structure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fast Multivariate normal sampling under Toeplitz covariance structure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MVToep)
+```

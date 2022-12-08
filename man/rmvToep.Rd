@@ -24,4 +24,5 @@ Multivariate normal samples from Toeplitz-structured Covariance matrix
 \examples{
 rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
 rmvToep(10, Sigma = diag(abs(rnorm(6))), mu = rep(1, 6))
+rmvToep(30, Sigma = Sigma.AR.order(0.3, 20))
 }

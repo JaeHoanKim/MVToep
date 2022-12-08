@@ -4,7 +4,7 @@
 
 <!-- badges: end -->
 
-## Multivariate normal distribution from Toeplitz-structured covariance matrix (MVToep)
+## Fast Sampling from Multivariate Normal distribution with Toeplitz-structured covariance matrix (MVToep)
 
 ### Intended use
 

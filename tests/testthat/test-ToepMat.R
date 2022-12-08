@@ -21,7 +21,17 @@ test_that("rmv dimension test", {
    expect_equal(dim(rmvMat(30, c(0:50)/50, rho = 1, nu = 1)), c(30, 51))
    expect_equal(dim(rmvMat(1, c(0:50)/50, rho = 1, nu = 1)), c(1, 51))
    expect_equal(dim(rmvRBF(50, c(0:10), l = 0.1, mu = 10 * runif(10))), c(50, 11))
+})
 
+## check the result for AR matrix and nonnegativity check
+
+Sigma11 = Sigma.AR.order(0.3, 20)
+Sigma12 = Sigma.AR.order(0.8, 10, order = 2)
+
+test_that("rmvToep result test", {
+   expect_equal(dim(Sigma11), c(20, 20))
+   expect_equal(nnd.C.Toep(Sigma11), "rmvToep is applicable for the given Sigma!")
+   expect_equal(nnd.C.Toep(Sigma12), "min(lambda) < 0; rmvToep cannot be applied for the given Sigma!")
 })
 
 ## error expected for ill conditioned matrix
@@ -64,4 +74,5 @@ test_that("Compatibility check", {
    expect_error(rmvToep(5, Sigma3), "Sigma should be a symmetric matrix!")
    expect_error(rmvToep(5, Sigma4), "Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
+   expect_error(Sigma.AR.order(0.3, 20, -1), "order should be given as a non-negative integer!")
 })

@@ -245,7 +245,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 #' Multivariate normal sampling from RBF covarinace kernel with regular grids
 #'
 #' @param gridpoints the gridpoints at which multivariate normal vector is drawn. Too ensure the Toeplitz structure of the covariance matrix, the grid should be regular.
-#' @param tau value of covariance matrix
+#' @param tau the constant to be multiplied to all the elements of the covariance matrix
 #' @inheritParams rmvToep
 #' @inheritParams RBFK
 #'

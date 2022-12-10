@@ -162,6 +162,15 @@ embed_vec = function(gridpoints, m){
    return(cj)
 }
 
+circ_mat = function(x){
+   n = length(x)
+   mat = matrix(0, n, n)
+   for (j in 1:n) {
+      mat[j, ] <- c(x[-(1:(n+1-j))], x[1:(n+1-j)])
+   }
+   return(mat)
+}
+
 C.eigval.Mat = function(gridpoints, m, rho, nu){
    vec = embed_vec(gridpoints, m)
    cj = MatK(vec, 0, rho, nu)

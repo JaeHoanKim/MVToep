@@ -7,18 +7,18 @@
 rmvRBF(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1)
 }
 \arguments{
-\item{n}{a}
+\item{n}{number of samples extracted from the distribution}
 
-\item{gridpoints}{b}
+\item{gridpoints}{the gridpoints at which multivariate normal vector is drawn. Too ensure the Toeplitz structure of the covariance matrix, the grid should be regular.}
 
-\item{l}{c}
+\item{l}{length parameter in the RBF kernel}
 
-\item{mu}{d}
+\item{mu}{the mean vector of the distribtuion}
 
-\item{tau}{e}
+\item{tau}{value of covariance matrix}
 }
 \value{
-f
+It returns the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
 }
 \description{
 Multivariate normal sampling from RBF covarinace kernel with regular grids

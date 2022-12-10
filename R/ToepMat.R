@@ -1,19 +1,19 @@
 #' Matern kernel function
 #'
-#' @param x scalar of vector input
-#' @param y scalar vector input (same length with x)
+#' @param x scalar / vector input
+#' @param y scalar / vector input (same length with x)
 #' @param rho length scale (non-negative)
 #' @param nu smoothness parameter (non-negative)
 #'
 #' @return It returns the calculated Matern kernel function value, along the following formula : \cr
-#' \eqn{C(d) = \sigma^2\frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
+#' \eqn{C(d) = \frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
 #' where \eqn{d = |x-y|}.
 #' @export
 #'
 #' @examples
 #' MatK(c(1, 2, 3), c(3, 4, 6), 1, 0.5)
 #' MatK(1, 1, 1, 1)
-MatK = function(x, y ,rho, nu){
+MatK = function(x, y, rho, nu){
    ifelse(abs(x - y) > 0, (sqrt(2 * nu) * abs(x - y) / rho)^nu /
              (2^(nu - 1) * gamma(nu)) * besselK(x = abs(x - y) * sqrt(2 * nu)/rho, nu = nu),
           1.0)
@@ -35,13 +35,14 @@ RBFK = function(x, y, l){
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
 
-#' AR structured covariance matrix
+#' Covariance matrix of an autoregressive model
 #'
 #' @param rho Autocorrelation coefficient; usually the value between 0 and 1
 #' @param p The number of rows for the desired matrix to be returned
 #' @param order The order of the AR model; default value is p
 #'
-#' @return It returns the p by p matrix with the element. For the return matrix C,
+#' @return It returns the p by p covariance matrix of an autoregressive model. By assigning the order, one can customize the number of nonzero elements.
+#' The elements in C is calculated as follows.
 #' \eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|<=order}, else 0
 #' @export
 #'
@@ -87,7 +88,7 @@ nnd.C.Toep = function(Sigma){
 #' @param mu the mean vector of the distribtuion
 #' @param symtol numerical threshold for checking symmetry in Sigma
 #'
-#' @return n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically
+#' @return It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
 #' @export
 #'
 #' @examples
@@ -207,13 +208,11 @@ nnd.C.RBF = function(gridpoints, m, l){
    }
 }
 
-#' Multivariate normal sampling from RBF covarinace kernel with regular grids
+#' Multivariate normal sampling from Matern covarinace kernel with regular grids
 #'
-#' @param rho length parameter in Matern kernel
-#' @param nu smoothness parameter in Matern kernel
 #' @inheritParams rmvRBF
-#'
-#' @return asdf
+#' @inheritParams MatK
+#' @return It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
 #' @export
 #'
 #' @examples
@@ -245,13 +244,12 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 
 #' Multivariate normal sampling from RBF covarinace kernel with regular grids
 #'
-#' @param n a
-#' @param gridpoints b
-#' @param l c
-#' @param mu d
-#' @param tau e
+#' @param gridpoints the gridpoints at which multivariate normal vector is drawn. Too ensure the Toeplitz structure of the covariance matrix, the grid should be regular.
+#' @param tau value of covariance matrix
+#' @inheritParams rmvToep
+#' @inheritParams RBFK
 #'
-#' @return f
+#' @return It returns the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
 #' @export
 #'
 #' @examples

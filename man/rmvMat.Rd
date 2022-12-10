@@ -2,28 +2,28 @@
 % Please edit documentation in R/ToepMat.R
 \name{rmvMat}
 \alias{rmvMat}
-\title{Multivariate normal sampling from RBF covarinace kernel with regular grids}
+\title{Multivariate normal sampling from Matern covarinace kernel with regular grids}
 \usage{
 rmvMat(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1)
 }
 \arguments{
-\item{n}{a}
+\item{n}{number of samples extracted from the distribution}
 
-\item{gridpoints}{b}
+\item{gridpoints}{the gridpoints at which multivariate normal vector is drawn. Too ensure the Toeplitz structure of the covariance matrix, the grid should be regular.}
 
-\item{rho}{length parameter in Matern kernel}
+\item{rho}{length scale (non-negative)}
 
-\item{nu}{smoothness parameter in Matern kernel}
+\item{nu}{smoothness parameter (non-negative)}
 
-\item{mu}{d}
+\item{mu}{the mean vector of the distribtuion}
 
-\item{tau}{e}
+\item{tau}{value of covariance matrix}
 }
 \value{
-asdf
+It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
 }
 \description{
-Multivariate normal sampling from RBF covarinace kernel with regular grids
+Multivariate normal sampling from Matern covarinace kernel with regular grids
 }
 \examples{
 rmvMat(10, c(0:20)/20, 1, 0.5, tau = 1)

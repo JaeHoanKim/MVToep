@@ -7,9 +7,9 @@
 RBFK(x, y, l)
 }
 \arguments{
-\item{x}{scalar of vector input}
+\item{x}{scalar / vector input}
 
-\item{y}{scalar vector input (same length with x)}
+\item{y}{scalar / vector input (same length with x)}
 
 \item{l}{length parameter in the RBF kernel}
 }

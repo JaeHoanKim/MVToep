@@ -16,7 +16,7 @@ rmvToep(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-08)
 \item{symtol}{numerical threshold for checking symmetry in Sigma}
 }
 \value{
-n by N (the number of rows in Sigma) matrix, n multivariate normal vectors stacked vertically
+It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
 }
 \description{
 Multivariate normal samples from Toeplitz-structured Covariance matrix

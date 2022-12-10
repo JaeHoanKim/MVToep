@@ -7,9 +7,9 @@
 MatK(x, y, rho, nu)
 }
 \arguments{
-\item{x}{scalar of vector input}
+\item{x}{scalar / vector input}
 
-\item{y}{scalar vector input (same length with x)}
+\item{y}{scalar / vector input (same length with x)}
 
 \item{rho}{length scale (non-negative)}
 
@@ -17,7 +17,7 @@ MatK(x, y, rho, nu)
 }
 \value{
 It returns the calculated Matern kernel function value, along the following formula : \cr
-\eqn{C(d) = \sigma^2\frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
+\eqn{C(d) = \frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
 where \eqn{d = |x-y|}.
 }
 \description{

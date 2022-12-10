@@ -2,7 +2,7 @@
 % Please edit documentation in R/ToepMat.R
 \name{Sigma.AR.order}
 \alias{Sigma.AR.order}
-\title{AR structured covariance matrix}
+\title{Covariance matrix of an autoregressive model}
 \usage{
 Sigma.AR.order(rho, p, order = p)
 }
@@ -14,11 +14,12 @@ Sigma.AR.order(rho, p, order = p)
 \item{order}{The order of the AR model; default value is p}
 }
 \value{
-It returns the p by p matrix with the element. For the return matrix C,
+It returns the p by p covariance matrix of an autoregressive model. By assigning the order, one can customize the number of nonzero elements.
+The elements in C is calculated as follows.
 \eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|<=order}, else 0
 }
 \description{
-AR structured covariance matrix
+Covariance matrix of an autoregressive model
 }
 \examples{
 Sigma.AR.order(0.3, 20)

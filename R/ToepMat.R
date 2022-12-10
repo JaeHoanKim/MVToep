@@ -86,7 +86,7 @@ nnd.C.Toep = function(Sigma){
 #' @param n number of samples extracted from the distribution
 #' @param Sigma covarinace matrix of the distribution. It should be a Toeplitz matrix
 #' @param mu the mean vector of the distribtuion
-#' @param symtol numerical threshold for checking symmetry in Sigma
+#' @param tol numerical threshold for checking symmetry and Toeplitz structure in Sigma
 #'
 #' @return It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
 #' @export
@@ -95,15 +95,18 @@ nnd.C.Toep = function(Sigma){
 #' rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
 #' rmvToep(10, Sigma = diag(abs(rnorm(6))), mu = rep(1, 6))
 #' rmvToep(30, Sigma = Sigma.AR.order(0.3, 20))
-rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-8){
+rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-8){
    N = dim(Sigma)[1]
    if (dim(Sigma)[2] != N){
       stop("Sigma should be a square matrix!")
    }
-   if (max(abs(Sigma - t(Sigma))) > symtol){
+   if (max(abs(Sigma - t(Sigma))) > tol){
       stop("Sigma should be a symmetric matrix!")
    }
    Sigma_vec = Sigma[1, ]
+   if (max(abs(Sigma - circ_mat(Sigma_vec))) > symtol){
+      stop("Sigma is a symmetric matrix, but not a Toeplitz matrix!")
+   }
    C_vec = c(Sigma_vec[1:N], Sigma_vec[N:1])
    lambda = Re(fft(C_vec))
    if (min(lambda) < 0){

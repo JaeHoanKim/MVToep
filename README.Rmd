@@ -43,7 +43,10 @@ library(MVToep)
 
 ## Example
 
-This is a basic example which shows how to use ```rmvToep``` function:
+The following is a basic example which shows how to use ```rmvToep``` function.
+
+To use the ```rmvToep``` function, a symmetric and Toeplitz-structured covariance matrix should be provided. ```mvToep``` package provides one class of covariance matrix that satisfies these conditions in ```Sigma.AR.order``` function, which is the covariance matrix of the autoregressive (AR) model. One can control the number of nonzero elements in this matrix by changing the ```order``` argument.
+
 
 ```{r example-rmvToep}
 library(MVToep)
@@ -55,7 +58,7 @@ plot(sample1[, 1], sample1[, 2])
 (cor(sample1[, 1], sample1[, 2]))
 ```
 
-To use ```rmvToep``` function, a symmetric and Toeplitz-structured covariance matrix should be provided. ```mvToep``` package provides one class of covariance matrix which satisfies these conditions in ```Sigma.AR.order``` function, which is the covariance matrix of autoregressive (AR) model. One can control the number of nonzero elements in this matrix by changing ```order``` argument. Simply saying, this argument indicates the nonzero bandwidth of the matrix. Under the AR model, the corrrelation coefficient of neighborhood is known to be ```rho```, which is matched with the above result.
+Simply saying, ```order``` argument indicates the nonzero bandwidth of the matrix. Under the AR model, the correlation coefficient of the neighborhood is ```rho```, which matches the above result.
 
 ```{r}
 plot(sample1[, 1], sample1[, 21])

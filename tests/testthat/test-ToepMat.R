@@ -74,5 +74,6 @@ test_that("Compatibility check", {
    expect_error(rmvToep(5, Sigma3), "Sigma should be a symmetric matrix!")
    expect_error(rmvToep(5, Sigma4), "Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
+   expect_warning(grid_regular_check(c(1, 2, 3, 5, 4)), "The gridpoints are not sorted. The gridpoints will be used in an ascending order!")
    expect_error(Sigma.AR.order(0.3, 20, -1), "order should be given as a non-negative integer!")
 })

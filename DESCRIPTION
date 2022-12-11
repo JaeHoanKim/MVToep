@@ -1,6 +1,6 @@
 Package: MVToep
 Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     person("Jaehoan", "Kim", , "k1mjh6561@stat.tamu.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4775-0768"))

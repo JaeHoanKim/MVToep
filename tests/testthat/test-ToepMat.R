@@ -64,6 +64,8 @@ Sigma4 = matrix(c(1, 0.99, 0.97, 0.94, 0.89,
                   0.97, 0.99, 1, 0.99, 0.97,
                   0.94, 0.97, 0.99, 1, 0.99,
                   0.89, 0.94, 0.97, 0.99, 1), 5, 5)
+vec1 = abs(rnorm(25))
+Sigma5 = matrix(vec1, 5, 5) + t(matrix(vec1, 5, 5))
 
 
 grid1 = c(0:8)/8
@@ -72,6 +74,7 @@ grid1[3] = grid1[3] + 0.001
 test_that("Compatibility check", {
    expect_error(rmvToep(5, Sigma2), "Sigma should be a square matrix!")
    expect_error(rmvToep(5, Sigma3), "Sigma should be a symmetric matrix!")
+   expect_error(rmvToep(5, Sigma5), "Sigma is a symmetric matrix, but not a Toeplitz matrix!")
    expect_error(rmvToep(5, Sigma4), "Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")
    expect_error(grid_regular_check(grid1), "gridpoints should be regular!")
    expect_warning(grid_regular_check(c(1, 2, 3, 5, 4)), "The gridpoints are not sorted. The gridpoints will be used in an ascending order!")

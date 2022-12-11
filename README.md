@@ -59,11 +59,11 @@ sample1 = rmvToep(500, Sigma)
 plot(sample1[, 1], sample1[, 2])
 ```
 
-<img src="man/figures/README-example-rmvToep-1.png" width="100%" />
+<img src="man/figures/README-example-rmvToep-1.png" width="50%" style="display: block; margin: auto;" />
 
 ``` r
 (cor(sample1[, 1], sample1[, 2]))
-#> [1] 0.7300089
+#> [1] 0.7032641
 ```
 
 To use `rmvToep` function, a symmetric and Toeplitz-structured
@@ -80,11 +80,11 @@ AR model, the corrrelation coefficient of neighborhood is known to be
 plot(sample1[, 1], sample1[, 21])
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" style="display: block; margin: auto;" />
 
 ``` r
 (cor(sample1[, 1], sample1[, 21]))
-#> [1] -0.01624695
+#> [1] 0.04555786
 ```
 
 In contrast, two indexes located far from each other show negligable

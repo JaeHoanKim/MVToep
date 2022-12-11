@@ -93,7 +93,6 @@ nnd.C.Toep = function(Sigma){
 #'
 #' @examples
 #' rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
-#' rmvToep(10, Sigma = diag(abs(rnorm(6))), mu = rep(1, 6))
 #' rmvToep(30, Sigma = Sigma.AR.order(0.3, 20))
 rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-8){
    N = dim(Sigma)[1]

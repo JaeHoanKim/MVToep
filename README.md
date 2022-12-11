@@ -51,7 +51,6 @@ elements in this matrix by changing the `order` argument.
 
 ``` r
 library(MVToep)
-
 Sigma = Sigma.AR.order(0.7, 200, order = 5)
 print(Sigma[1:8, 1:8])
 #>         [,1]    [,2]    [,3]   [,4]   [,5]    [,6]    [,7]    [,8]
@@ -63,15 +62,40 @@ print(Sigma[1:8, 1:8])
 #> [6,] 0.16807 0.24010 0.34300 0.4900 0.7000 1.00000 0.70000 0.49000
 #> [7,] 0.00000 0.16807 0.24010 0.3430 0.4900 0.70000 1.00000 0.70000
 #> [8,] 0.00000 0.00000 0.16807 0.2401 0.3430 0.49000 0.70000 1.00000
+```
+
+Before applying `rmvToep` function on `Sigma`, one can check the
+availability of this algorithm by using `nnd.C.Toep` function. This
+function returns the comment whether one can apply `rmvToep` function or
+not. `Sigma` should be positive semi-definite matrix to apply `rmvToep`
+function.
+
+``` r
+nnd.C.Toep(Sigma)
+#> [1] "rmvToep is applicable for the given Sigma!"
+```
+
+Here is the example in which one cannot apply `rmvToep` function:
+
+``` r
+Sigma2 = Sigma.AR.order(0.7, 200, order = 1)
+nnd.C.Toep(Sigma2)
+#> [1] "min(lambda) < 0; rmvToep cannot be applied for the given Sigma!"
+```
+
+The example below illustrates the sampling result from `rmvToep`
+function.
+
+``` r
 sample1 = rmvToep(500, Sigma)
 plot(sample1[, 1], sample1[, 2])
 ```
 
-<img src="man/figures/README-example-rmvToep-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" style="display: block; margin: auto;" />
 
 ``` r
 (cor(sample1[, 1], sample1[, 2]))
-#> [1] 0.699893
+#> [1] 0.7079458
 ```
 
 Simply saying, `order` argument indicates the nonzero bandwidth of the
@@ -82,15 +106,60 @@ neighborhood is `rho`, which matches the above result.
 plot(sample1[, 1], sample1[, 21])
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" />
 
 ``` r
 (cor(sample1[, 1], sample1[, 21]))
-#> [1] 0.003299581
+#> [1] -0.03113447
 ```
 
 In contrast, two indexes located far from each other show negligable
 correlation.
+
+`rmvMat` function works in a simpler way. This is the function to draw
+multivariate normal samples under Matern covariance kernel at a regular
+grid, which can be directly applied to obtain the approximate solution
+of the stochastic partial differential equation (SPDE). The object
+`result_Mat` contains two arguments as a separate list. The first list
+is the multivariate samples, and the second the used covariance matrix.
+One can use `?MatK` to check how the covariance matrix is calculated.
+
+``` r
+grid = c(0:300)/50
+result_Mat = rmvMat(n = 40, grid, rho = 3, nu = 0.5, tau = 2)
+sample2 = result_Mat[[1]]
+```
+
+By the visualization below, one can indirectly check that each row of
+the `sample2` indicates the Gaussian process with Matern covariance
+matrix.
+
+``` r
+plot(sample2[1, ], ylim = c(-6, 6))
+for (i in 1:7){
+   lines(sample2[i, ], col = i)
+}
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" />
+
+`rmvRBF` works similarly as `rmvMat` function. The only difference is
+the required arguments for the kernel setting. It is worth noting that
+rmvRBF is more likely to suffer from the ill-conditionedness of the
+covariance matrix due to its nature. One can use `?RBFK` to check how
+the covariance matrix is calculated.
+
+``` r
+grid = c(0:13)/13
+result_RBF = rmvRBF(n = 40, grid, l = 0.1, tau = 1)
+sample3 = result_RBF[[1]]
+plot(sample3[1, ], ylim = c(-3, 3))
+for (i in 1:7){
+   lines(sample3[i, ], col = i)
+}
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" />
 
 ## References
 

@@ -76,7 +76,7 @@ Sigma.AR.order = function(rho, p, order = p){
 nnd.C.Toep = function(Sigma){
    N = nrow(Sigma)
    Sigma_vec = Sigma[1, ]
-   out = min(Re(fft(c(Sigma_vec[1:N], Sigma_vec[N:1]))))
+   out = min(Re(fft(c(Sigma_vec[1:N], Sigma_vec[(N-1):2]))))
    return(ifelse(out >= 0, "rmvToep is applicable for the given Sigma!",
                  "min(lambda) < 0; rmvToep cannot be applied for the given Sigma!"))
 }
@@ -103,10 +103,10 @@ rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-8){
       stop("Sigma should be a symmetric matrix!")
    }
    Sigma_vec = Sigma[1, ]
-   if (max(abs(Sigma - (circ_mat(c(Sigma_vec, Sigma_vec[N:2])))[1:N, 1:N])) > tol){
+   if (max(abs(Sigma - (circ_mat(c(Sigma_vec, Sigma_vec[(N-1):2])))[1:N, 1:N])) > tol){
       stop("Sigma is a symmetric matrix, but not a Toeplitz matrix!")
    }
-   C_vec = c(Sigma_vec[1:N], Sigma_vec[N:1])
+   C_vec = c(Sigma_vec[1:N], Sigma_vec[(N-1):2])
    lambda = Re(fft(C_vec))
    if (min(lambda) < 0){
       stop("Sigma is ill-conditioned or not Positive definite; try rmvMat or rmvRBF if applicable.")

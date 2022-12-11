@@ -134,11 +134,14 @@ rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-8){
 
 grid_regular_check = function(gridpoints){
    N = length(gridpoints)
+   if (max(abs((gridpoints - sort(gridpoints)))) > 1e-8){
+      warning("The gridpoints are not sorted. The gridpoints will be used in an ascending order!")
+   }
    gridpoints = sort(gridpoints)
    point_ini = gridpoints[1]
    gap = gridpoints[2] - gridpoints[1]
    if (max(abs(gridpoints - point_ini - gap * c(0:(N-1)))) > 1e-8){
-      stop("gridpoints should be regular!")
+      stop("The gridpoints should be regular!")
    }
 }
 
@@ -232,6 +235,7 @@ nnd.C.RBF = function(gridpoints, m, l){
 rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
+   gridpoints = sort(gridpoints)
    embed_result = nnd.C.Mat(gridpoints, m = min_m(gridpoints), rho, nu)
    cj = embed_result$cj
    m = embed_result$m
@@ -251,6 +255,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
    }
    out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
+   Sigma.out = circ_mat(MatK(gridpoints, gridpoints, rho, nu))
    return(out)
 }
 
@@ -269,6 +274,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    N = length(gridpoints)
    grid_regular_check(gridpoints)
+   gridpoints = sort(gridpoints)
    embed_result = nnd.C.RBF(gridpoints, m = min_m(gridpoints), l)
    cj = embed_result$cj
    m = embed_result$m
@@ -288,5 +294,6 @@ rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    }
    out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
+   Sigma.out = tau^2 * circ_mat(RBFK(gridpoints, gridpoints, l))
    return(out)
 }

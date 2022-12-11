@@ -200,7 +200,7 @@ nnd.C.Mat = function(gridpoints, m, rho, nu){
    else{
       m = 2 * m
       if (m > 2000){
-         stop("It seems that adequate circular matrix is not found. Try smaller l.")
+         stop("It seems that adequate circular matrix is not found. Try smaller nu.")
       }
       nnd.C.Mat(gridpoints, m, rho, nu)
    }

@@ -18,9 +18,9 @@ Sigma1 = matrix(c(1, 0.1, 0, 0, 0,
 
 test_that("rmv dimension test", {
    expect_equal(dim(rmvToep(50, Sigma1, mu = c(1, 2, 3, 4, 5))), c(50, 5))
-   expect_equal(dim(rmvMat(30, c(0:50)/50, rho = 1, nu = 1)), c(30, 51))
-   expect_equal(dim(rmvMat(1, c(0:50)/50, rho = 1, nu = 1)), c(1, 51))
-   expect_equal(dim(rmvRBF(50, c(0:10), l = 0.1, mu = 10 * runif(10))), c(50, 11))
+   expect_equal(dim(rmvMat(30, c(0:50)/50, rho = 1, nu = 1)[[1]]), c(30, 51))
+   expect_equal(dim(rmvMat(1, c(0:50)/50, rho = 1, nu = 1)[[1]]), c(1, 51))
+   expect_equal(dim(rmvRBF(50, c(0:10), l = 0.1, mu = 10 * runif(10))[[1]]), c(50, 11))
 })
 
 ## check the result for AR matrix and nonnegativity check

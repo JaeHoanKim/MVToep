@@ -4,7 +4,7 @@
 \alias{rmvToep}
 \title{Multivariate normal samples from Toeplitz-structured Covariance matrix}
 \usage{
-rmvToep(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-08)
+rmvToep(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-08)
 }
 \arguments{
 \item{n}{number of samples extracted from the distribution}
@@ -13,7 +13,7 @@ rmvToep(n, Sigma, mu = rep(0, nrow(Sigma)), symtol = 1e-08)
 
 \item{mu}{the mean vector of the distribtuion}
 
-\item{symtol}{numerical threshold for checking symmetry in Sigma}
+\item{tol}{numerical threshold for checking symmetry and Toeplitz structure in Sigma}
 }
 \value{
 It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
@@ -23,6 +23,5 @@ Multivariate normal samples from Toeplitz-structured Covariance matrix
 }
 \examples{
 rmvToep(5, Sigma = diag(10), mu = rep(1, 10))
-rmvToep(10, Sigma = diag(abs(rnorm(6))), mu = rep(1, 6))
 rmvToep(30, Sigma = Sigma.AR.order(0.3, 20))
 }

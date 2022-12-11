@@ -227,7 +227,8 @@ nnd.C.RBF = function(gridpoints, m, l){
 #'
 #' @inheritParams rmvRBF
 #' @inheritParams MatK
-#' @return It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
+#' @return It returns two values as a list. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+#' The second elemnt is the covariance matrix used for the sampling.
 #' @export
 #'
 #' @examples
@@ -261,12 +262,13 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 
 #' Multivariate normal sampling from RBF covarinace kernel with regular grids
 #'
-#' @param gridpoints the gridpoints at which multivariate normal vector is drawn. Too ensure the Toeplitz structure of the covariance matrix, the grid should be regular.
+#' @param gridpoints the gridpoints at which multivariate normal vector is drawn. To ensure the Toeplitz structure of the covariance matrix, the grid should be regular.
 #' @param tau the constant to be multiplied to all the elements of the covariance matrix
 #' @inheritParams rmvToep
 #' @inheritParams RBFK
 #'
-#' @return It returns the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+#' @return It returns two values as a list. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+#' The second elemnt is the covariance matrix used for the sampling.
 #' @export
 #'
 #' @examples

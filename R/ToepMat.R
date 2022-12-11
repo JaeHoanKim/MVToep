@@ -255,8 +255,8 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
    }
    out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
-   Sigma.out = circ_mat(MatK(gridpoints, gridpoints, rho, nu))
-   return(out)
+   Sigma.out = tau^2 * circ_mat(MatK(gridpoints, gridpoints[1], l))
+   return(list("samples" = out, "Cov.mat" = Sigma.out))
 }
 
 #' Multivariate normal sampling from RBF covarinace kernel with regular grids
@@ -294,6 +294,6 @@ rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    }
    out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
-   Sigma.out = tau^2 * circ_mat(RBFK(gridpoints, gridpoints, l))
-   return(out)
+   Sigma.out = tau^2 * circ_mat(RBFK(gridpoints, gridpoints[1], l))
+   return(list("samples" = out, "Cov.mat" = Sigma.out))
 }

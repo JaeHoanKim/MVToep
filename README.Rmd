@@ -42,21 +42,26 @@ library(MVToep)
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows how to use ```rmvToep``` function:
 
-```{r example}
+```{r example-rmvToep}
 library(MVToep)
-## basic example code
+
+Sigma = Sigma.AR.order(0.7, 200, order = 5)
+print(Sigma[1:8, 1:8])
+sample1 = rmvToep(500, Sigma)
+plot(sample1[, 1], sample1[, 2])
+(cor(sample1[, 1], sample1[, 2]))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+To use ```rmvToep``` function, a symmetric and Toeplitz-structured covariance matrix should be provided. ```mvToep``` package provides one class of covariance matrix which satisfies these conditions in ```Sigma.AR.order``` function, which is the covariance matrix of autoregressive (AR) model. One can control the number of nonzero elements in this matrix by changing ```order``` argument. Simply saying, this argument indicates the nonzero bandwidth of the matrix. Under the AR model, the corrrelation coefficient of neighborhood is known to be ```rho```, which is matched with the above result.
 
-```{r cars}
-summary(cars)
+```{r}
+plot(sample1[, 1], sample1[, 21])
+(cor(sample1[, 1], sample1[, 21]))
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: 
-
+In contrast, two indexes located far from each other show negligable correlation.
 
 ## References
 

@@ -39,31 +39,56 @@ Then, use
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows how to use `rmvToep` function:
 
 ``` r
 library(MVToep)
-## basic example code
+
+Sigma = Sigma.AR.order(0.7, 200, order = 5)
+print(Sigma[1:8, 1:8])
+#>         [,1]    [,2]    [,3]   [,4]   [,5]    [,6]    [,7]    [,8]
+#> [1,] 1.00000 0.70000 0.49000 0.3430 0.2401 0.16807 0.00000 0.00000
+#> [2,] 0.70000 1.00000 0.70000 0.4900 0.3430 0.24010 0.16807 0.00000
+#> [3,] 0.49000 0.70000 1.00000 0.7000 0.4900 0.34300 0.24010 0.16807
+#> [4,] 0.34300 0.49000 0.70000 1.0000 0.7000 0.49000 0.34300 0.24010
+#> [5,] 0.24010 0.34300 0.49000 0.7000 1.0000 0.70000 0.49000 0.34300
+#> [6,] 0.16807 0.24010 0.34300 0.4900 0.7000 1.00000 0.70000 0.49000
+#> [7,] 0.00000 0.16807 0.24010 0.3430 0.4900 0.70000 1.00000 0.70000
+#> [8,] 0.00000 0.00000 0.16807 0.2401 0.3430 0.49000 0.70000 1.00000
+sample1 = rmvToep(500, Sigma)
+plot(sample1[, 1], sample1[, 2])
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+<img src="man/figures/README-example-rmvToep-1.png" width="100%" />
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+(cor(sample1[, 1], sample1[, 2]))
+#> [1] 0.7300089
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
+To use `rmvToep` function, a symmetric and Toeplitz-structured
+covariance matrix should be provided. `mvToep` package provides one
+class of covariance matrix which satisfies these conditions in
+`Sigma.AR.order` function, which is the covariance matrix of
+autoregressive (AR) model. One can control the number of nonzero
+elements in this matrix by changing `order` argument. Simply saying,
+this argument indicates the nonzero bandwidth of the matrix. Under the
+AR model, the corrrelation coefficient of neighborhood is known to be
+`rho`, which is matched with the above result.
+
+``` r
+plot(sample1[, 1], sample1[, 21])
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+``` r
+(cor(sample1[, 1], sample1[, 21]))
+#> [1] -0.01624695
+```
+
+In contrast, two indexes located far from each other show negligable
+correlation.
 
 ## References
 

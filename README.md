@@ -95,7 +95,7 @@ plot(sample1[, 1], sample1[, 2])
 
 ``` r
 (cor(sample1[, 1], sample1[, 2]))
-#> [1] 0.7079458
+#> [1] 0.6966054
 ```
 
 Simply saying, `order` argument indicates the nonzero bandwidth of the
@@ -110,10 +110,10 @@ plot(sample1[, 1], sample1[, 21])
 
 ``` r
 (cor(sample1[, 1], sample1[, 21]))
-#> [1] -0.03113447
+#> [1] -0.03687086
 ```
 
-In contrast, two indexes located far from each other show negligable
+In contrast, two indexes located far from each other show negligible
 correlation.
 
 `rmvMat` function works in a simpler way. This is the function to draw
@@ -145,7 +145,7 @@ for (i in 1:7){
 
 `rmvRBF` works similarly as `rmvMat` function. The only difference is
 the required arguments for the kernel setting. It is worth noting that
-rmvRBF is more likely to suffer from the ill-conditionedness of the
+rmvRBF is more likely to suffer from the ill-condition problem of the
 covariance matrix due to its nature. One can use `?RBFK` to check how
 the covariance matrix is calculated.
 

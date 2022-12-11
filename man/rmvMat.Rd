@@ -2,7 +2,7 @@
 % Please edit documentation in R/ToepMat.R
 \name{rmvMat}
 \alias{rmvMat}
-\title{Multivariate normal sampling from Matern covarinace kernel with regular grids}
+\title{Multivariate normal sampling from the Matern covariance kernel with regular grids}
 \usage{
 rmvMat(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1)
 }
@@ -15,16 +15,16 @@ rmvMat(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1)
 
 \item{nu}{smoothness parameter (non-negative)}
 
-\item{mu}{the mean vector of the distribtuion}
+\item{mu}{the mean vector of the distribution}
 
-\item{tau}{the constant to be multiplied to all the elements of the covariance matrix}
+\item{tau}{the constant to be multiplied to all the elements of the covariance matrix. This argument can be used to control the overall variance of the components.}
 }
 \value{
-It returns two values as a list. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
-The second elemnt is the covariance matrix used for the sampling.
+It returns the list of two. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+The second element is the covariance matrix used for the sampling.
 }
 \description{
-Multivariate normal sampling from Matern covarinace kernel with regular grids
+Multivariate normal sampling from the Matern covariance kernel with regular grids
 }
 \examples{
 rmvMat(10, c(0:20)/20, 1, 0.5, tau = 1)

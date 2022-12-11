@@ -14,14 +14,15 @@ Sigma.AR.order(rho, p, order = p)
 \item{order}{The order of the AR model; default value is p}
 }
 \value{
-It returns the p by p covariance matrix of an autoregressive model. By assigning the order, one can customize the number of nonzero elements.
+It returns the p by p covariance matrix of an autoregressive (AR) model. By assigning the order, one can customize the number of nonzero elements.
+Generated matrices can be used for rmvToep function after checking by nnd.C.Toep function.
 The elements in C is calculated as follows.
-\eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|<=order}, else 0
+\eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|}<=order, else 0
 }
 \description{
 Covariance matrix of an autoregressive model
 }
 \examples{
-Sigma.AR.order(0.3, 20)
-Sigma.AR.order(0.5, 10, order = 0)
+Sigma.AR.order(0.3, 10)
+Sigma.AR.order(0.5, 10, order = 2)
 }

@@ -82,7 +82,7 @@ plot(sample1[, 1], sample1[, 21])
 (cor(sample1[, 1], sample1[, 21]))
 ```
 
-In contrast, two indexes located far from each other show negligable correlation.
+In contrast, two indexes located far from each other show negligible correlation.
 
 ```rmvMat``` function works in a simpler way. This is the function to draw multivariate normal samples under Matern covariance kernel at a regular grid, which can be directly applied to obtain the approximate solution of the stochastic partial differential equation (SPDE). The object ```result_Mat``` contains two arguments as a separate list. The first list is the multivariate samples, and the second the used covariance matrix. One can use ```?MatK``` to check how the covariance matrix is calculated.
 
@@ -101,7 +101,7 @@ for (i in 1:7){
 }
 ```
 
-```rmvRBF``` works similarly as ```rmvMat``` function. The only difference is the required arguments for the kernel setting. It is worth noting that rmvRBF is more likely to suffer from the ill-conditionedness of the covariance matrix due to its nature. One can use ```?RBFK``` to check how the covariance matrix is calculated.
+```rmvRBF``` works similarly as ```rmvMat``` function. The only difference is the required arguments for the kernel setting. It is worth noting that rmvRBF is more likely to suffer from the ill-condition problem of the covariance matrix due to its nature. One can use ```?RBFK``` to check how the covariance matrix is calculated.
 
 ```{r}
 grid = c(0:13)/13

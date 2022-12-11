@@ -18,7 +18,7 @@ MatK(x, y, rho, nu)
 \value{
 It returns the calculated Matern kernel function value, along the following formula : \cr
 \eqn{C(d) = \frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
-where \eqn{d = |x-y|}.
+where \eqn{d = |x-y|}. It allows scalar / vector input for \eqn{x} and \eqn{y}.
 }
 \description{
 Matern kernel function

@@ -2,24 +2,24 @@
 % Please edit documentation in R/ToepMat.R
 \name{rmvToep}
 \alias{rmvToep}
-\title{Multivariate normal samples from Toeplitz-structured Covariance matrix}
+\title{Multivariate normal sampling from the Toeplitz-structured Covariance matrix}
 \usage{
 rmvToep(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-08)
 }
 \arguments{
 \item{n}{number of samples extracted from the distribution}
 
-\item{Sigma}{covarinace matrix of the distribution. It should be a Toeplitz matrix}
+\item{Sigma}{covariance matrix of the distribution. It should be a Toeplitz matrix}
 
-\item{mu}{the mean vector of the distribtuion}
+\item{mu}{the mean vector of the distribution}
 
 \item{tol}{numerical threshold for checking symmetry and Toeplitz structure in Sigma}
 }
 \value{
-It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
+It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically. The mean vector of the distribution can be controlled by setting mu vector.
 }
 \description{
-Multivariate normal samples from Toeplitz-structured Covariance matrix
+Multivariate normal sampling from the Toeplitz-structured Covariance matrix
 }
 \examples{
 rmvToep(5, Sigma = diag(10), mu = rep(1, 10))

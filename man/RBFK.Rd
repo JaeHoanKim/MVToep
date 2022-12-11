@@ -16,7 +16,7 @@ RBFK(x, y, l)
 \value{
 It returns the calculated RBF kernel function value, along the following formula : \cr
 \eqn{C(d) = \exp(-\frac{d^2}{2l^2})}, \cr
-where \eqn{d = |x-y|}.
+where \eqn{d = |x-y|}. It allows scalar / vector input for \eqn{x} and \eqn{y}.
 }
 \description{
 RBF kernel function

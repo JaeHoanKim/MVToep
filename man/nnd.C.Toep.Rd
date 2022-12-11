@@ -2,20 +2,20 @@
 % Please edit documentation in R/ToepMat.R
 \name{nnd.C.Toep}
 \alias{nnd.C.Toep}
-\title{nonnegativity check for the given Toeplitz matrix}
+\title{non-negativity check for the given Toeplitz matrix}
 \usage{
 nnd.C.Toep(Sigma)
 }
 \arguments{
-\item{Sigma}{A matrix to be checked}
+\item{Sigma}{A matrix to be checked for the non-negativity}
 }
 \value{
-It returns the inspection result of the matrix.
+It returns the availability of the rmvToep function about the given Toeplitz matrix, which depends on the non-negativity of the given matrix.
 }
 \description{
-nonnegativity check for the given Toeplitz matrix
+non-negativity check for the given Toeplitz matrix
 }
 \examples{
-nnd.C.Toep(diag(3))
+nnd.C.Toep(Sigma.AR.order(0.8, 10, 2))
 nnd.C.Toep(Sigma.AR.order(0.3, 20))
 }

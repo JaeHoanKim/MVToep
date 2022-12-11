@@ -2,7 +2,7 @@
 % Please edit documentation in R/ToepMat.R
 \name{rmvRBF}
 \alias{rmvRBF}
-\title{Multivariate normal sampling from RBF covarinace kernel with regular grids}
+\title{Multivariate normal sampling from the RBF covariance kernel with regular grids}
 \usage{
 rmvRBF(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1)
 }
@@ -13,16 +13,16 @@ rmvRBF(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1)
 
 \item{l}{length parameter in the RBF kernel}
 
-\item{mu}{the mean vector of the distribtuion}
+\item{mu}{the mean vector of the distribution}
 
-\item{tau}{the constant to be multiplied to all the elements of the covariance matrix}
+\item{tau}{the constant to be multiplied to all the elements of the covariance matrix. This argument can be used to control the overall variance of the components.}
 }
 \value{
-It returns two values as a list. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
-The second elemnt is the covariance matrix used for the sampling.
+It returns the list of two. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+The second element is the covariance matrix used for the sampling. The argument tau can be used to control the overall variance of the elements.
 }
 \description{
-Multivariate normal sampling from RBF covarinace kernel with regular grids
+Multivariate normal sampling from the RBF covariance kernel with regular grids
 }
 \examples{
 rmvRBF(100, c(0:20)/20, l = 0.1, tau = 1)

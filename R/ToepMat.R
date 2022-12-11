@@ -64,11 +64,11 @@ Sigma.AR.order = function(rho, p, order = p){
    return(R)
 }
 
-#' nonnegativity check for the given Toeplitz matrix
+#' non-negativity check for the given Toeplitz matrix
 #'
-#' @param Sigma A matrix to be checked for the nonnegativity
+#' @param Sigma A matrix to be checked for the non-negativity
 #'
-#' @return It returns the availability of the rmvToep function about the given Toeplitz matrix, which depends on the nonnegativity of the given matrix.
+#' @return It returns the availability of the rmvToep function about the given Toeplitz matrix, which depends on the non-negativity of the given matrix.
 #' @export
 #'
 #' @examples
@@ -269,7 +269,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 #' @inheritParams RBFK
 #'
 #' @return It returns the list of two. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
-#' The second elemnt is the covariance matrix used for the sampling. The argument tau can be used to control the overall variance of the elements.
+#' The second element is the covariance matrix used for the sampling. The argument tau can be used to control the overall variance of the elements.
 #' @export
 #'
 #' @examples

@@ -8,7 +8,7 @@
 
 ### Intended use
 
-This package is intend to efficiently draw multivariate normal samples from the Toeplitz-structured covariance matrices, which is widely used throughout the fields. For handy usage, it provides simple implementations for sampling from the regular grid points with radial basis function (RBF) and Matern kernels. The main idea for this algorithm is based on Wood and Chan (1994).
+Multivariate normal (Gaussian) sampling from the Toeplitz-structured covariance matrix is in diverse fields: from obtaining the approximate solution of the stochastic partial differential equation to directly testing the performance in the simulation studies. Therefore, this package intends to efficiently draw samples from the Toeplitz-structured covariance matrix, with several user-friendly functions. For handy usage, it provides simple implementations for sampling from the regular grid points with radial basis function (RBF) and Matern kernels, with the covariance matrix of the autoregressive model. The main idea for this algorithm is suggested on Wood and Chan (1994).
 
 ### Installation instructions
 

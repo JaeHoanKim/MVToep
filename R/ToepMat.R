@@ -7,7 +7,7 @@
 #'
 #' @return It returns the calculated Matern kernel function value, along the following formula : \cr
 #' \eqn{C(d) = \frac{2^{1 - \nu}}{\Gamma(\nu)} (\sqrt{2\nu}\frac{d}{\rho})^{\nu} K_{\nu}(\sqrt{2\nu}\frac{d}{\rho})}, \cr
-#' where \eqn{d = |x-y|}.
+#' where \eqn{d = |x-y|}. It allows scalar / vector input for \eqn{x} and \eqn{y}.
 #' @export
 #'
 #' @examples
@@ -26,7 +26,7 @@ MatK = function(x, y, rho, nu){
 #'
 #' @return It returns the calculated RBF kernel function value, along the following formula : \cr
 #' \eqn{C(d) = \exp(-\frac{d^2}{2l^2})}, \cr
-#' where \eqn{d = |x-y|}.
+#' where \eqn{d = |x-y|}. It allows scalar / vector input for \eqn{x} and \eqn{y}.
 #' @export
 #'
 #' @examples
@@ -41,14 +41,15 @@ RBFK = function(x, y, l){
 #' @param p The number of rows for the desired matrix to be returned
 #' @param order The order of the AR model; default value is p
 #'
-#' @return It returns the p by p covariance matrix of an autoregressive model. By assigning the order, one can customize the number of nonzero elements.
+#' @return It returns the p by p covariance matrix of an autoregressive (AR) model. By assigning the order, one can customize the number of nonzero elements.
+#' Generated matrices can be used for rmvToep function after checking by nnd.C.Toep function.
 #' The elements in C is calculated as follows.
-#' \eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|<=order}, else 0
+#' \eqn{C[i, j] = \rho^{|i-j|}} if \eqn{|i-j|}<=order, else 0
 #' @export
 #'
 #' @examples
-#' Sigma.AR.order(0.3, 20)
-#' Sigma.AR.order(0.5, 10, order = 0)
+#' Sigma.AR.order(0.3, 10)
+#' Sigma.AR.order(0.5, 10, order = 2)
 Sigma.AR.order = function(rho, p, order = p){
    order = floor(order)
    if (order < 0){
@@ -65,13 +66,13 @@ Sigma.AR.order = function(rho, p, order = p){
 
 #' nonnegativity check for the given Toeplitz matrix
 #'
-#' @param Sigma A matrix to be checked
+#' @param Sigma A matrix to be checked for the nonnegativity
 #'
-#' @return It returns the inspection result of the matrix.
+#' @return It returns the availability of the rmvToep function about the given Toeplitz matrix, which depends on the nonnegativity of the given matrix.
 #' @export
 #'
 #' @examples
-#' nnd.C.Toep(diag(3))
+#' nnd.C.Toep(Sigma.AR.order(0.8, 10, 2))
 #' nnd.C.Toep(Sigma.AR.order(0.3, 20))
 nnd.C.Toep = function(Sigma){
    N = nrow(Sigma)
@@ -81,14 +82,14 @@ nnd.C.Toep = function(Sigma){
                  "min(lambda) < 0; rmvToep cannot be applied for the given Sigma!"))
 }
 
-#' Multivariate normal samples from Toeplitz-structured Covariance matrix
+#' Multivariate normal sampling from the Toeplitz-structured Covariance matrix
 #'
 #' @param n number of samples extracted from the distribution
-#' @param Sigma covarinace matrix of the distribution. It should be a Toeplitz matrix
-#' @param mu the mean vector of the distribtuion
+#' @param Sigma covariance matrix of the distribution. It should be a Toeplitz matrix
+#' @param mu the mean vector of the distribution
 #' @param tol numerical threshold for checking symmetry and Toeplitz structure in Sigma
 #'
-#' @return It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically.
+#' @return It returns the n by N (the number of rows in Sigma) matrix, in which n multivariate normal vectors are stacked vertically. The mean vector of the distribution can be controlled by setting mu vector.
 #' @export
 #'
 #' @examples
@@ -222,12 +223,12 @@ nnd.C.RBF = function(gridpoints, m, l){
    }
 }
 
-#' Multivariate normal sampling from Matern covarinace kernel with regular grids
+#' Multivariate normal sampling from the Matern covariance kernel with regular grids
 #'
 #' @inheritParams rmvRBF
 #' @inheritParams MatK
-#' @return It returns two values as a list. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
-#' The second elemnt is the covariance matrix used for the sampling.
+#' @return It returns the list of two. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+#' The second element is the covariance matrix used for the sampling.
 #' @export
 #'
 #' @examples
@@ -260,15 +261,15 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
    return(list("samples" = out, "Cov.mat" = Sigma.out))
 }
 
-#' Multivariate normal sampling from RBF covarinace kernel with regular grids
+#' Multivariate normal sampling from the RBF covariance kernel with regular grids
 #'
 #' @param gridpoints the gridpoints at which multivariate normal vector is drawn. To ensure the Toeplitz structure of the covariance matrix, the grid should be regular.
-#' @param tau the constant to be multiplied to all the elements of the covariance matrix
+#' @param tau the constant to be multiplied to all the elements of the covariance matrix. This argument can be used to control the overall variance of the components.
 #' @inheritParams rmvToep
 #' @inheritParams RBFK
 #'
-#' @return It returns two values as a list. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
-#' The second elemnt is the covariance matrix used for the sampling.
+#' @return It returns the list of two. The first element is the n by N (the length of gridpoints) matrix, in which n multivariate normal vectors are stacked vertically.
+#' The second elemnt is the covariance matrix used for the sampling. The argument tau can be used to control the overall variance of the elements.
 #' @export
 #'
 #' @examples

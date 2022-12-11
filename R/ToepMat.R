@@ -104,7 +104,7 @@ rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-8){
       stop("Sigma should be a symmetric matrix!")
    }
    Sigma_vec = Sigma[1, ]
-   if (max(abs(Sigma - (circ_mat(c(Sigma_vec, Sigma_vec[N:1])))[1:N, 1:N])) > tol){
+   if (max(abs(Sigma - (circ_mat(c(Sigma_vec, Sigma_vec[N:2])))[1:N, 1:N])) > tol){
       stop("Sigma is a symmetric matrix, but not a Toeplitz matrix!")
    }
    C_vec = c(Sigma_vec[1:N], Sigma_vec[N:1])
@@ -257,7 +257,7 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
    out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
    Sigma.vec = MatK(gridpoints, gridpoints[1], rho, nu)
-   Sigma.out = (tau^2 * circ_mat(c(Sigma.vec, Sigma.vec[N:1])))[1:N, 1:N]
+   Sigma.out = (tau^2 * circ_mat(c(Sigma.vec, Sigma.vec[N:2])))[1:N, 1:N]
    return(list("samples" = out, "Cov.mat" = Sigma.out))
 }
 
@@ -298,6 +298,6 @@ rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
    out = out[, 1:N] * tau
    out = out + matrix(mu, n, N, byrow = T)
    Sigma.vec = RBFK(gridpoints, gridpoints[1], l)
-   Sigma.out = (tau^2 * circ_mat(c(Sigma.vec, Sigma.vec[N:1])))[1:N, 1:N]
+   Sigma.out = (tau^2 * circ_mat(c(Sigma.vec, Sigma.vec[N:2])))[1:N, 1:N]
    return(list("samples" = out, "Cov.mat" = Sigma.out))
 }

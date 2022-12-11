@@ -24,7 +24,7 @@ into the R console. Then, use
 library(MVToep)
 ``` 
 
-to use two functions in MVToep.
+to use the functions in MVToep.
 
 ### Examples
 

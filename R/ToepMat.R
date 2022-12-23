@@ -103,6 +103,9 @@ rmvToep = function(n, Sigma, mu = rep(0, nrow(Sigma)), tol = 1e-8){
    if (max(abs(Sigma - t(Sigma))) > tol){
       stop("Sigma should be a symmetric matrix!")
    }
+   if (nrow(Sigma) != length(mu)){
+      stop("The length of the mean vector should be same as the number of rows in Sigma!")
+   }
    Sigma_vec = Sigma[1, ]
    if (max(abs(Sigma - (circ_mat(c(Sigma_vec, Sigma_vec[(N-1):2])))[1:N, 1:N])) > tol){
       stop("Sigma is a symmetric matrix, but not a Toeplitz matrix!")
@@ -234,6 +237,18 @@ nnd.C.RBF = function(gridpoints, m, l){
 #' @examples
 #' rmvMat(10, c(0:20)/20, 1, 0.5, tau = 1)
 rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau = 1){
+   if (nu <= 0){
+      stop("nu should be positive!")
+   }
+   if (tau <= 0){
+      stop("tau should be positive!")
+   }
+   if (rho <= 0){
+      stop("rho should be positive!")
+   }
+   if (length(gridpoints) != length(mu)){
+      stop("the length of gridpoints should be the same as that of mu!")
+   }
    N = length(gridpoints)
    grid_regular_check(gridpoints)
    gridpoints = sort(gridpoints)
@@ -275,6 +290,15 @@ rmvMat = function(n, gridpoints, rho, nu, mu = rep(0, length(gridpoints)), tau =
 #' @examples
 #' rmvRBF(100, c(0:20)/20, l = 0.1, tau = 1)
 rmvRBF = function(n, gridpoints, l, mu = rep(0, length(gridpoints)), tau = 1){
+   if (l <= 0){
+      stop("l should be positive!")
+   }
+   if (tau <= 0){
+      stop("tau should be positive!")
+   }
+   if (length(gridpoints) != length(mu)){
+      stop("the length of gridpoints should be the same as that of mu!")
+   }
    N = length(gridpoints)
    grid_regular_check(gridpoints)
    gridpoints = sort(gridpoints)

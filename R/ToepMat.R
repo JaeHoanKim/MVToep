@@ -14,9 +14,6 @@
 #' MatK(c(1, 2, 3), c(3, 4, 6), 1, 0.5)
 #' MatK(1, 1, 1, 1)
 MatK = function(x, y, rho, nu){
-   if (length(x) != length(y)){
-      warning("The length of x and y is recommended to be the same!", noBreaks. = TRUE)
-   }
    ifelse(abs(x - y) > 0, (sqrt(2 * nu) * abs(x - y) / rho)^nu /
              (2^(nu - 1) * gamma(nu)) * besselK(x = abs(x - y) * sqrt(2 * nu)/rho, nu = nu),
           1.0)
@@ -35,9 +32,6 @@ MatK = function(x, y, rho, nu){
 #' @examples
 #' RBFK(c(0, 1, 2), rep(0, 3), 5)
 RBFK = function(x, y, l){
-   if (length(x) != length(y)){
-      warning("The length of x and y is recommended to be the same!", noBreaks. = TRUE)
-   }
    return(exp(-(x - y)^2 / (2 * l^2)))
 }
 

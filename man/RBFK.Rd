@@ -22,5 +22,5 @@ where \eqn{d = |x-y|}. It allows scalar / vector input for \eqn{x} and \eqn{y}.
 RBF kernel function
 }
 \examples{
-RBFK(c(0, 1, 2), 0, 5)
+RBFK(c(0, 1, 2), rep(0, 3), 5)
 }

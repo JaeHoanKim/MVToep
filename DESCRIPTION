@@ -1,5 +1,5 @@
 Package: MVToep
-Title: What the Package Does (One Line, Title Case)
+Title: Fast Multivariate Normal Sampling from Toeplitz-structured covariance matrix
 Version: 1.0.0
 Authors@R: 
     person("Jaehoan", "Kim", , "k1mjh6561@stat.tamu.edu", role = c("aut", "cre"),
